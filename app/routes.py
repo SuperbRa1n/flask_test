@@ -121,7 +121,7 @@ def upload_image():
 def add_knowledge():
     data = request.get_json()
     knowledge_base = json.loads(open(current_app.config['KNOWLEDGE_BASE'], 'r').read())
-    gm = GPT_Model()
+    gm = GPT_Model(current_app)
     # 筛选出近五分钟内的数据
     latest_knowledge_base = {
         k: v

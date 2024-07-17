@@ -1,10 +1,9 @@
 import datetime
 import requests
-import app
 import json
 
 class GPT_Model:
-    def __init__(self) -> None:
+    def __init__(self, app) -> None:
         self.api_key = app.config['OPENAI_API_KEY']
         self.base_url = app.config['OPENAI_BASE_URL']
         
