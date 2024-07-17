@@ -2,7 +2,7 @@ import os
 import threading
 
 class Config:
-    SERVER_PORT = os.environ.get('PORT') or 9045 # 服务器端口
+    SERVER_PORT = os.environ.get('PORT') or 9050 # 服务器端口
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'CARA112233' # 用于保护表单免受跨站请求伪造（CSRF）的攻击
     OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY') # OpenAI API密钥
     # 设置OPENAI_API_KEY为你的OpenAI API密钥    
@@ -22,4 +22,7 @@ class Config:
     COS_REGION = os.environ.get('COS_REGION') # 腾讯云对象存储地域
     TEMP_IMAGE_DIR = os.path.join(os.getcwd(), 'TempAudio') # 临时音频文件夹
     KNOWLEDGE_BASE = './transcriptions.json' # 知识库文件
+    MOONSHOT_API_KEY = os.environ.get('MOONSHOT_API_KEY') # Moonshot API密钥
+    MOONSHOT_BASE_URL = os.environ.get('MOONSHOT_BASE_URL') or 'https://api.moonshot.cn/v1' # Moonshot API基础URL
+    CACHE_ID = os.environ.get('CACHE_ID')
 

@@ -94,8 +94,14 @@ def send_message():
 @bp.route('/api/messages', methods=['GET'])
 @login_required
 def get_messages():
-    messages = Message.query.filter_by(user_id=current_user.id).all()
-    return jsonify([{'content': msg.content, 'date_posted': msg.date_posted} for msg in messages]), 200
+    # 获取数据库中的所有用户的所有message
+    messages = Message.query.all()
+    results = []
+    for msg in messages:
+        sender = User.query.get(msg.user_id)
+        results.append({'content': msg.content, 'date_posted': msg.date_posted, 'sender': sender.username})
+    
+    return jsonify(results), 200
 
 @bp.route('/api/admin/users', methods=['GET'])
 @login_required
@@ -135,10 +141,20 @@ def add_knowledge():
     knowledge_base.append(knowledge_item)
     with open(current_app.config['KNOWLEDGE_BASE'], 'w') as f:
         json.dump(knowledge_base, f, indent=4)
+    # 更新cache
+    gm.update_cache(knowledge_base, current_app.config['CACHE_ID'])
     return jsonify({'message': 'Knowledge added successfully'}), 200
 
 @bp.route('/api/get_knowledge', methods=['GET'])
 def get_knowledge():
     knowledge_base = json.loads(open(current_app.config['KNOWLEDGE_BASE'], 'r').read())
     return jsonify(knowledge_base), 200
+
+@bp.route('/api/answer_question', methods=['POST'])
+def answer_question():
+    data = request.get_json()
+    gm = GPT_Model(current_app)
+    messages = Message.query.all()
+    answer = gm.answer_by_knowledge(messages, data['question'], current_app.config['CACHE_ID'])
+    return jsonify({'answer': answer}), 200
     
