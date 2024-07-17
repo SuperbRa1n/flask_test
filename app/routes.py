@@ -136,4 +136,9 @@ def add_knowledge():
     with open(current_app.config['KNOWLEDGE_BASE'], 'w') as f:
         json.dump(knowledge_base, f, indent=4)
     return jsonify({'message': 'Knowledge added successfully'}), 200
+
+@bp.route('/api/get_knowledge', methods=['GET'])
+def get_knowledge():
+    knowledge_base = json.loads(open(current_app.config['KNOWLEDGE_BASE'], 'r').read())
+    return jsonify(knowledge_base), 200
     
