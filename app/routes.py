@@ -42,7 +42,8 @@ def send_message():
 @bp.route('/api/messages', methods=['GET'])
 @login_required
 def get_messages():
-    messages = Message.query.filter_by(user_id=current_user.id).all()
+    # 获取所有用户发送的所有消息
+    messages = Message.query.all()
     return jsonify([{'content': msg.content, 'date_posted': msg.date_posted, 'sender': User.query.filter_by(id=msg.user_id).first().username} for msg in messages]), 200
 
 @bp.route('/api/admin/users', methods=['GET'])
