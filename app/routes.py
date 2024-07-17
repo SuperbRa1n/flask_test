@@ -32,6 +32,10 @@ def is_silent(data, silence_threshold):
     except Exception as e:
         logging.error(f"Error in calculating average absolute value: {e}")
         return True, 0
+    
+@bp.route('/')
+def index():
+    return 'Hello, Cara!'
 
 @bp.route('/audio_stream', methods=['POST'])
 def audio_stream():
