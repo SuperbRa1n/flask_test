@@ -10,7 +10,7 @@ class Config:
     OPENAI_BASE_URL = os.environ.get('OPENAI_BASE_URL') or 'https://gpt.lucent.blog/v1' # OpenAI API基础URL
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///site.db' # 数据库URI
     SQLALCHEMY_TRACK_MODIFICATIONS = False # 关闭对模型修改的监视
-    TEMP_AUDIO_DIR = 'TempAudio' # 临时音频文件夹
+    TEMP_AUDIO_DIR = os.path.join(os.getcwd(), 'TempAudio') # 临时音频文件夹
     SILENCE_THRESHOLD = 1100  # 静音阈值
     SILENCE_DURATION = 2  # 检测到静音后等待的秒数
     WINDOW_SIZE = 10  # 滑动窗口大小
@@ -20,6 +20,6 @@ class Config:
     COS_SECRET_ID = os.environ.get('COS_SECRET_ID') # 腾讯云对象存储Secret ID
     COS_SECRET_KEY = os.environ.get('COS_SECRET_KEY') # 腾讯云对象存储Secret Key
     COS_REGION = os.environ.get('COS_REGION') # 腾讯云对象存储地域
-    TEMP_IMAGE_DIR = 'TempImage' # 临时图片文件夹
-    KNOWLEDGE_BASE = 'transcriptions.json' # 知识库文件
+    TEMP_IMAGE_DIR = os.path.join(os.getcwd(), 'TempAudio') # 临时音频文件夹
+    KNOWLEDGE_BASE = './transcriptions.json' # 知识库文件
 
