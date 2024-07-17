@@ -49,8 +49,3 @@ class CosBucket:
         )
         url: str = f"https://{self.bucket_name}.cos.{self.region}.myqcloud.com/{image_name}"
         return url
-    
-
-if __name__ == "__main__":
-    bucket: CosBucket = CosBucket(secret_id="AKIDPhFi7ScecihU4QgjsDWdWUkpjQvHVWIq", secret_key="TikfSCkT6Yn5LdqwufIkzMaidLrAg19U", region="ap-nanjing")
-    print(bucket.get_bucket(0))
