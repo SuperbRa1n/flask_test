@@ -123,13 +123,9 @@ def add_knowledge():
     knowledge_base = json.loads(open(current_app.config['KNOWLEDGE_BASE'], 'r').read())
     gm = GPT_Model(current_app)
     # 筛选出近五分钟内的数据
-    latest_knowledge_base = {
-        k: v
-        for k, v in knowledge_base.items()
-        if datetime.datetime.fromisoformat(v['timestamp'])
-        > datetime.datetime.now(datetime.timezone.utc)
-        - datetime.timedelta(minutes=5)
-    }
+    latest_knowledge_base = [
+        item for item in knowledge_base if (datetime.utcnow() - datetime.fromisoformat(item['timestamp'])).total_seconds() < 300
+    ]
     data_text = gm.ask_image(data['url'], latest_knowledge_base)
     knowledge_item = {
         'timestamp': datetime.utcnow().isoformat(),
