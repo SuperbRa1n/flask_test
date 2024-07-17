@@ -1,9 +1,58 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 from flask_login import login_user, current_user, logout_user, login_required
 from app import db
 from app.models import User, Message
+import time
+import numpy as np
+import os
+import logging
+import threading
+from app.cos import CosBucket
+from app.gpt import GPT_Model
+import json
+import datetime
 
 bp = Blueprint('main', __name__)
+
+window = []
+lock = threading.Lock()
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def is_silent(data, silence_threshold):
+    try:
+        audio_data = np.frombuffer(data, dtype=np.int16)
+        if len(audio_data) == 0:
+            return True, 0
+        audio_data = audio_data.reshape(-1, 2)
+        abs_left = np.mean(np.abs(audio_data[:, 0]))
+        abs_right = np.mean(np.abs(audio_data[:, 1]))
+        avg_abs = (abs_left + abs_right) / 2
+        return avg_abs < silence_threshold, avg_abs
+    except Exception as e:
+        logging.error(f"Error in calculating average absolute value: {e}")
+        return True, 0
+
+@bp.route('/audio_stream', methods=['POST'])
+def audio_stream():
+    global window
+    data = request.data
+    silence_threshold = current_app.config['SILENCE_THRESHOLD']
+    temp_pcm_file = os.path.join(current_app.config['TEMP_AUDIO_DIR'], 'temp_audio.pcm')
+    
+    logging.info(f"Received data of length: {len(data)} bytes")
+    silent, rms = is_silent(data, silence_threshold)
+    window.append(rms)
+    if len(window) > current_app.config['WINDOW_SIZE']:
+        window.pop(0)
+    avg_rms = np.mean(window)
+    logging.info(f"Current RMS: {rms}, Average RMS over last {current_app.config['WINDOW_SIZE']} packets: {avg_rms}")
+    if avg_rms >= silence_threshold:
+        current_app.config['LAST_SOUND_TIME'] = time.time()
+    with lock:
+        with open(temp_pcm_file, 'ab') as f:
+            f.write(data)
+    return '', 200
 
 @bp.route('/api/register', methods=['POST'])
 def register():
@@ -42,9 +91,8 @@ def send_message():
 @bp.route('/api/messages', methods=['GET'])
 @login_required
 def get_messages():
-    # 获取所有用户发送的所有消息
-    messages = Message.query.all()
-    return jsonify([{'content': msg.content, 'date_posted': msg.date_posted, 'sender': User.query.filter_by(id=msg.user_id).first().username} for msg in messages]), 200
+    messages = Message.query.filter_by(user_id=current_user.id).all()
+    return jsonify([{'content': msg.content, 'date_posted': msg.date_posted} for msg in messages]), 200
 
 @bp.route('/api/admin/users', methods=['GET'])
 @login_required
@@ -53,3 +101,39 @@ def admin_get_users():
         return jsonify({'error': 'Access denied'}), 403
     users = User.query.all()
     return jsonify([{'username': user.username, 'email': user.email} for user in users]), 200
+
+@bp.route('/api/upload_image', methods=['POST'])
+def upload_image():
+    image_file = request.files['image']
+    image_name = image_file.filename
+    image_path = f"{current_app.config['TEMP_IMAGE_FILE']}/{image_name}"
+    image_file.save(image_path)
+    bucket = CosBucket(secret_id=current_app.config['COS_SECRET_ID'], secret_key=current_app.config['COS_SECRET_KEY'], region=current_app.config['COS_REGION'])
+    image_url = bucket.upload_file(current_app.config["TEMP_IMAGE_FILE"])
+    return jsonify({'image_url': image_url}), 200
+
+@bp.route('/api/add_knowledge', methods=['POST'])
+def add_knowledge():
+    data = request.get_json()
+    knowledge_base = json.loads(open(current_app.config['KNOWLEDGE_BASE'], 'r').read())
+    gm = GPT_Model()
+    # 筛选出近五分钟内的数据
+    latest_knowledge_base = {
+        k: v
+        for k, v in knowledge_base.items()
+        if datetime.datetime.fromisoformat(v['timestamp'])
+        > datetime.datetime.now(datetime.timezone.utc)
+        - datetime.timedelta(minutes=5)
+    }
+    data_text = gm.ask_image(data['url'], latest_knowledge_base)
+    knowledge_item = {
+        'timestamp': datetime.utcnow().isoformat(),
+        'type': 'image',
+        'url': data['url'],
+        'text': data_text
+    }
+    knowledge_base.append(knowledge_item)
+    with open(current_app.config['KNOWLEDGE_BASE'], 'w') as f:
+        json.dump(knowledge_base, f, indent=4)
+    return jsonify({'message': 'Knowledge added successfully'}), 200
+    
