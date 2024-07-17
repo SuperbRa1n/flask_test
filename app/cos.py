@@ -52,7 +52,5 @@ class CosBucket:
     
 
 if __name__ == "__main__":
-    import json
-    config: dict = json.load(open("config.json", "r"))
-    bucket: CosBucket = CosBucket(secret_id=config["cos_secret_id"], secret_key=config["cos_secret_key"], region=config["cos_region"])
-    print(bucket.upload_file("/Users/zzy/Desktop/test.jpeg"))
+    bucket: CosBucket = CosBucket(secret_id="AKIDPhFi7ScecihU4QgjsDWdWUkpjQvHVWIq", secret_key="TikfSCkT6Yn5LdqwufIkzMaidLrAg19U", region="ap-nanjing")
+    print(bucket.get_bucket(0))
