@@ -2,7 +2,7 @@ import os
 import threading
 
 class Config:
-    SERVER_PORT = os.environ.get('PORT') or 5000 # 服务器端口
+    SERVER_PORT = os.environ.get('PORT') or 9044 # 服务器端口
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'CARA112233' # 用于保护表单免受跨站请求伪造（CSRF）的攻击
     OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY') # OpenAI API密钥
     # 设置OPENAI_API_KEY为你的OpenAI API密钥    

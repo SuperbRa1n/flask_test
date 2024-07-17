@@ -104,12 +104,14 @@ def admin_get_users():
 
 @bp.route('/api/upload_image', methods=['POST'])
 def upload_image():
+    print(current_app.config['TEMP_IMAGE_DIR'])
     image_file = request.files['image']
     image_name = image_file.filename
-    image_path = f"{current_app.config['TEMP_IMAGE_FILE']}/{image_name}"
+    image_path = f"{current_app.config['TEMP_IMAGE_DIR']}/{image_name}"
     image_file.save(image_path)
     bucket = CosBucket(secret_id=current_app.config['COS_SECRET_ID'], secret_key=current_app.config['COS_SECRET_KEY'], region=current_app.config['COS_REGION'])
-    image_url = bucket.upload_file(current_app.config["TEMP_IMAGE_FILE"])
+    image_url = bucket.upload_file(current_app.config["TEMP_IMAGE_DIR"])
+    os.remove(image_path)
     return jsonify({'image_url': image_url}), 200
 
 @bp.route('/api/add_knowledge', methods=['POST'])
