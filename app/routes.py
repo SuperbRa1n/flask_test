@@ -62,7 +62,7 @@ def register():
     data = request.get_json()
     if User.query.filter_by(email=data['email']).first() or User.query.filter_by(username=data['username']).first():
         return jsonify({'error': 'User already exists'}), 400
-    user = User(username=data['username'], email=data['email'], password=data['password'])
+    user = User(username=data['username'], email=data['email'], password=data['password'], avatar_url=data['avatar_url'])
     db.session.add(user)
     db.session.commit()
     return jsonify({'message': 'User registered successfully'}), 201
