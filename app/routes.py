@@ -139,7 +139,7 @@ def add_knowledge():
     gm = GPT_Model(current_app)
     # 筛选出近五分钟内的数据
     latest_knowledge_base = [
-        item for item in knowledge_base if (datetime.utcnow() - datetime.fromisoformat(item['timestamp'])).total_seconds() < 300
+        item for item in knowledge_base if (datetime.utcnow() - datetime.fromisoformat(item['timestamp'])).total_seconds() < 180
     ]
     data_text = gm.ask_image(data['url'], latest_knowledge_base)
     knowledge_item = {
