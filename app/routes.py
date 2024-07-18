@@ -99,7 +99,7 @@ def get_messages():
     results = []
     for msg in messages:
         sender = User.query.get(msg.user_id)
-        results.append({'content': msg.content, 'date_posted': msg.date_posted, 'sender': sender.username})
+        results.append({'content': msg.content, 'date_posted': msg.date_posted, 'sender': sender.username, 'avatar_url': sender.avatar_url})
     
     return jsonify(results), 200
 
