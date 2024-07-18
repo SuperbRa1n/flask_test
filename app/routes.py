@@ -103,13 +103,23 @@ def get_messages():
     
     return jsonify(results), 200
 
+@bp.route('/api/get_info', methods=['GET'])
+@login_required
+def get_info():
+    return jsonify({'username': current_user.username, 'email': current_user.email, 'avatar_url': current_user.avatar_url}), 200
+
+@bp.route('/api/get_cara_info', methods=['GET'])
+def get_cara_info():
+    cara = User.query.filter_by(username='Cara').first()
+    return jsonify({'username': cara.username, 'email': cara.email, 'avatar_url': cara.avatar_url}), 200
+
 @bp.route('/api/admin/users', methods=['GET'])
 @login_required
 def admin_get_users():
     if current_user.username != 'admin':
         return jsonify({'error': 'Access denied'}), 403
     users = User.query.all()
-    return jsonify([{'username': user.username, 'email': user.email} for user in users]), 200
+    return jsonify([{'username': user.username, 'email': user.email, 'avatar_url': user.avatar_url} for user in users]), 200
 
 @bp.route('/api/upload_image', methods=['POST'])
 def upload_image():
