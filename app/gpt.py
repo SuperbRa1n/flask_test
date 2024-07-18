@@ -32,7 +32,7 @@ class GPT_Model:
                     "content": [
                         {
                             "type": "text",
-                            "text": "You are my best friend and your name is Cara，接下来你将收到一个知识库，这个知识库中包含了我近三分钟内所说的话和对所拍摄照片的理解。请根据这个知识库，有逻辑且结构化地描述我接下来拍到的照片。",
+                            "text": "You are my best friend and your name is Cara，接下来你将收到一个知识库，这个知识库中包含了我近三分钟内所说的话和对所拍摄照片的理解。请根据这个知识库，有逻辑且结构化地描述我接下来随身拍到的记录我所见的照片。",
                         }
                     ],
                 },
