@@ -1,33 +1,194 @@
 [
     {
-        "text": "well I'm gonna speak English I hope it would be better to show the text",
-        "timestamp": "2024-07-17T06:12:06.504173",
+        "text": "我们终于到Adventure X 2024的场地了",
+        "timestamp": "2024-07-15T06:12:06.504173",
         "type": "voice"
     },
     {
-        "text": "Actually, I don't know who is talking something about this",
-        "timestamp": "2024-07-17T06:12:19.629603",
+        "text": "Adventure X 2024场地，景色优美",
+        "timestamp": "2024-07-15T06:12:06.504173",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-151852.jpg"
+    },
+    {
+        "text": "先在签名墙上留下我们的名字",
+        "timestamp": "2024-07-15T06:15:06.504173",
         "type": "voice"
     },
     {
-        "text": "Well, that's really cool. I think it's really tough just not to do those things.",
-        "timestamp": "2024-07-17T06:12:36.262540",
+        "text": "签名墙上留下了我们的名字",
+        "timestamp": "2024-07-15T06:15:06.504173",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-153039.jpg"
+    },
+    {
+        "text": "怎么这么多人，还有这么多的公司布展",
+        "timestamp": "2024-07-15T06:20:16.504173",
         "type": "voice"
     },
     {
-        "text": "你好,能听到吗?能听到我说话吗?",
-        "timestamp": "2024-07-17T07:25:58.325075",
+        "text": "布展的公司，给我们提供了很多便利和机会",
+        "timestamp": "2024-07-15T06:20:16.504173",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-152026.jpg"
+    },
+    {
+        "text": "我们要在这个场地呆五天，开发一款AI硬件产品",
+        "timestamp": "2024-07-15T06:35:06.504173",
         "type": "voice"
     },
     {
-        "text": "他他妈输出的是这个 转一下转一下去搜一下 我之前搜了感觉不知道为什么转不出来 我用了别人转码的方法 什么电 不是你用百度搜一个什么 用以后的翻译器就行 在线翻译就行 这无所谓 Let's Speak English 这个纸是你转的 感觉这个包太长了",
-        "timestamp": "2024-07-17T07:26:33.779930",
+        "text": "开发的场地，有很多工作台",
+        "timestamp": "2024-07-15T06:35:06.504173",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-152328.jpg"
+    },
+    {
+        "text": "这边这个展台居然可以部署环境就领个充电宝，咱也去拿一个",
+        "timestamp": "2024-07-15T08:20:08.504173",
+        "type": "voice"
+    },
+    {
+        "text": "领到的充电宝，看起来很好用",
+        "timestamp": "2024-07-15T08:21:06.504173",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-152328.jpg"
+    },
+    {
+        "text": "这是我们的工作台，未来五天我们要在这里工作，开发写代码",
+        "timestamp": "2024-07-15T09:35:07.504173",
+        "type": "voice"
+    },
+    {
+        "text": "我们的工作台",
+        "timestamp": "2024-07-15T09:35:07.504173",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-152627.jpg"
+    },
+    {
+        "text": "博文哥我们去吃晚饭吧，全是免费的不吃白不吃啊",
+        "timestamp": "2024-07-15T10:31:06.504173",
+        "type": "voice"
+    },
+    {
+        "text": "丰盛的晚餐",
+        "timestamp": "2024-07-15T10:31:06.504173",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-152907.jpg"
+    },
+    {
+        "text": "我们到了开幕式现场，挺震撼的",
+        "timestamp": "2024-07-15T12:51:06.504173",
+        "type": "voice"
+    },
+    {
+        "text": "开幕式现场",
+        "timestamp": "2024-07-15T12:51:06.504173",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-153330.jpg"
+    },
+    {
+        "text": "还是回宿舍睡觉吧，明天还要早起继续干",
+        "timestamp": "2024-07-15T22:01:07.504173",
+        "type": "voice"
+    },
+    {
+        "text": "这是黑客松的第二天，新建文件夹，启动！",
+        "timestamp": "2024-07-16T01:12:06.504173",
+        "type": "voice"
+    },
+    {
+        "text": "这个流式语音转文本怎么这么难写啊",
+        "timestamp": "2024-07-16T01:35:08.504173",
+        "type": "voice"
+    },
+    {
+        "text": "先把手机放在桌子上充电，一会再玩",
+        "timestamp": "2024-07-16T03:12:06.504173",
+        "type": "voice"
+    },
+    {
+        "text": "手机放在桌子上充电",
+        "timestamp": "2024-07-16T03:12:06.504173",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-153527.jpg"
+    },
+    {
+        "text": "这个黑客松的氛围真的很好，大家都在努力",
+        "timestamp": "2024-07-16T05:52:06.504173",
         "type": "voice"
     },
     {
         "text": "计算机编程比赛现场，参赛者交流代码。",
-        "timestamp": "2024-07-18T08:24:04.506764",
+        "timestamp": "2024-07-16T05:52:04.506764",
         "type": "image",
         "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-074758.jpg"
+    },
+    {
+        "text": "怎么这么多bug啊，再也不不遵守代码规范了",
+        "timestamp": "2024-07-16T08:24:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "今天有个音乐节，一会儿去看看",
+        "timestamp": "2024-07-18T08:45:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "诶音乐节在哪啊，看看飞书",
+        "timestamp": "2024-07-18T08:45:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "这个音乐节真的很好玩，乐队非常带感",
+        "timestamp": "2024-07-18T12:35:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "现在硬件已经写出来了，我们看看设备吧",
+        "timestamp": "2024-07-18T14:24:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "硬件设备",
+        "timestamp": "2024-07-18T14:24:04.506764",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-154251.jpg"
+    },
+    {
+        "text": "现在开始写APP和UI界面了，加油",
+        "timestamp": "2024-07-18T15:09:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "还剩一个晚上就deadline了，我们得抓紧时间",
+        "timestamp": "2024-07-18T15:21:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "剩下的时间我们拍个展示视频吧",
+        "timestamp": "2024-07-18T15:44:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "大家已经陆陆续续开始准备展示了，我们去逛逛",
+        "timestamp": "2024-07-18T16:02:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "这个项目好牛逼啊我去",
+        "timestamp": "2024-07-18T16:04:04.506764",
+        "type": "voice"
+    },
+    {
+        "text": "牛逼的项目",
+        "timestamp": "2024-07-18T16:04:04.506764",
+        "type": "image",
+        "url": "https://tannin-1316822731.cos.ap-nanjing.myqcloud.com/2024-07-18-154438.jpg"
+    },
+    {
+        "text": "好好好写完了，明天加油，回去睡觉了",
+        "timestamp": "2024-07-18T08:24:04.506764",
+        "type": "voice"
     }
 ]

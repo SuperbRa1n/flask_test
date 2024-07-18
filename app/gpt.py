@@ -153,7 +153,7 @@ class GPT_Model:
             "text": "你回答的内容"
         }
         
-        注意，由于我的知识库中是包含timestamp的，所以时间也是一个重要的信息，并且你回答的时间要基于北京时间，而我传入的是UTC时间，你可以根据这个信息来回答我的问题。
+        注意，由于我的知识库中是包含时间的，所以时间也是一个重要的信息，并且你回答的时间要基于我UTC时间转成的北京时间。每次回答的内容不需要太长，也不用太多项，不超过三项即可。
         """
         # completion = self.moonshot_client.chat.completions.create(
         #     model="moonshot-v1-128k",

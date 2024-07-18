@@ -171,4 +171,12 @@ def answer_question():
     db.session.add(message)
     db.session.commit()
     return jsonify({'answer': answer}), 200
+
+@bp.route('/api/delete_all_message', methods=['GET'])
+def delete_message():
+    messages = Message.query.all()
+    for msg in messages:
+        db.session.delete(msg)
+    db.session.commit()
+    return jsonify({'message': 'All messages deleted'}), 200
     
