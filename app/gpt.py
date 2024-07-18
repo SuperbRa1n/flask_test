@@ -32,7 +32,7 @@ class GPT_Model:
                     "content": [
                         {
                             "type": "text",
-                            "text": "You are my best friend and your name is Cara，接下来你将收到一个知识库，这个知识库中包含了我近三分钟内所说的话和对所拍摄照片的理解。请根据这个知识库，有逻辑且结构化地描述我接下来随身拍到的记录我所见的照片。",
+                            "text": "You are my best friend and your name is Cara，接下来你将收到一个知识库，这个知识库中包含了我近三分钟内所说的话和对所拍摄照片的理解。请根据这个知识库，有逻辑且结构化地描述我接下来随身拍到的记录我所见的照片，详细地描述各个物品的位置以及相对摆放情况。",
                         }
                     ],
                 },
@@ -95,14 +95,14 @@ class GPT_Model:
         messages = [
             {
                 "role": "system",
-                "content": "你是一个私人定制化的AI助手Cara，接下来你将收到一个知识库，这个知识库中包含了我所说的话和对所拍摄照片的理解。接下来的问题请根据我提供的知识库回答"
+                "content": "你是一个私人定制化的AI助手Cara，接下来你将收到一个知识库，这个知识库中包含了我所说的话和对所拍摄照片的理解。接下来的问题请根据我提供的知识库回答，但请不要提及与知识库有关的词汇"
             },
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "这是一个JSON形式的知识库，包含了每条听到的话语或者拍到的图片的时间以及相关信息:\n" + json.dumps(knowledge_base, indent=4)
+                        "text": json.dumps(knowledge_base, indent=4)
                     }
                 ]
             }
