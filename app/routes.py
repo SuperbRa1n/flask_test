@@ -157,7 +157,7 @@ def answer_question():
     messages = Message.query.all()
     answer = gm.answer_by_knowledge(messages, data['question'], current_app.config['CACHE_ID'])
     # 以Cara的身份发送消息
-    message = Message(content=answer, user_id=User.query.filter_by(username='Cara').first().id)
+    message = Message(content=answer["answer"], user_id=User.query.filter_by(username='Cara').first().id)
     db.session.add(message)
     db.session.commit()
     return jsonify({'answer': answer}), 200

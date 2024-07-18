@@ -199,7 +199,6 @@ class GPT_Model:
                             "response_format": {
                                 "type": "json_object"
                             }
-                        })
-        print(response.json())
-        print(response.headers)
-        return response.json()
+                        }).json()
+        result = response['choices'][0]['message']['content']
+        return result
