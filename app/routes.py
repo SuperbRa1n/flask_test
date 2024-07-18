@@ -179,4 +179,16 @@ def delete_message():
         db.session.delete(msg)
     db.session.commit()
     return jsonify({'message': 'All messages deleted'}), 200
+
+@bp.route('/api/add_one_knowledge', methods=['POST'])
+def add_one_knowledge():
+    data = request.get_json()
+    knowledge_base = json.loads(open(current_app.config['KNOWLEDGE_BASE'], 'r').read())
+    knowledge_item = data
+    knowledge_base.append(knowledge_item)
+    with open(current_app.config['KNOWLEDGE_BASE'], 'w') as f:
+        json.dump(knowledge_base, f, indent=4)
+    gm = GPT_Model(current_app)
+    gm.update_cache(knowledge_base, current_app.config['CACHE_ID'])
+    return jsonify({'message': 'Knowledge added successfully'}), 200
     

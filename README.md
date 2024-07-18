@@ -105,3 +105,9 @@ The address of `BASE_URL` :
 	{
 		"question": "your question"
 	}
+
+### /api/delete_all_message
+
+* function: delete add messages
+* method: GET
+* data: none
